@@ -3,11 +3,12 @@
  * Module dependencies.
  */
 
-var express = require('express')
-  , routes = require('./routes')
-  , user = require('./routes/user')
-  , http = require('http')
-  , path = require('path');
+var express = require('express'),
+ routes = require('./routes'),
+ scores = require('./routes/scores'),
+ leagues = require('./routes/leagues'),
+ http = require('http'),
+ path = require('path');
 
 var app = express();
 
@@ -28,6 +29,8 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
+app.get('/scores', scores.index);
+app.get('/leagues', leagues.index);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
