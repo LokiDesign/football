@@ -22,7 +22,6 @@ block footercrumbs
 
 block scripts
     script(type='text/javascript').
-        var test = "#{franchises}"
         var franchise = function() {
             var self = this
             self.name = ko.observable()
@@ -35,19 +34,18 @@ block scripts
             $.ajax({
                 url: '/getLeague/28655',
                 success: function (data) {
+                    var dat = data.league.franchises.franchise;
                     var tmp = [];
-                    for (var i = 0; i < data.length; i++){
+                    for (var i = 0; i < dat.length; i++){
                         var f = new franchise()
-                        f.name(data[i].name)
-                        f.logo(data[i].logo)
-                        f.division(data[i].division)
+                        f.name(dat[i].name)
+                        f.logo(dat[i].logo)
+                        f.division(dat[i].division)
                         tmp.push(f)
                     }
                     self.franchises(tmp)
                 }
             });
-
-            self.textme = ko.observable("textme")
         }
         $(document).ready(function(){
             var model = new Page();
