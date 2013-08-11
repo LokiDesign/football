@@ -1,5 +1,11 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  ul.nav.nav-pills.nav-stacked
+    li
+        a(href='/leagues') Leagues
+    li
+        a(href='/scores') Scores
+block footercrumbs
+    ul.breadcrumb
+        li.active Menu

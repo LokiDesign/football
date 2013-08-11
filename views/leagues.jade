@@ -3,3 +3,9 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+
+block footercrumbs
+    ul.breadcrumb
+        li 
+            a(href='/') Menu
+        li.active Leagues
