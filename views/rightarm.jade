@@ -22,6 +22,7 @@ block footercrumbs
 
 block scripts
     script(type='text/javascript').
+        var test = "#{franchises}"
         var franchise = function() {
             var self = this
             self.name = ko.observable()
@@ -29,19 +30,17 @@ block scripts
             self.division = ko.observable()
         }
         var Page = function() {
-            var url = "http://football32.myfantasyleague.com/2013/export?TYPE=league&L=28655&W=&JSON=1";
             var self = this;
             self.franchises = ko.observable([])
             $.ajax({
-                url: url,
+                url: '/getLeague/28655',
                 success: function (data) {
-                    var pulled = data.league.franchises.franchise
                     var tmp = [];
-                    for (var i = 0; i < pulled.length; i++){
+                    for (var i = 0; i < data.length; i++){
                         var f = new franchise()
-                        f.name(pulled[i].name)
-                        f.logo(pulled[i].logo)
-                        f.division(pulled[i].division)
+                        f.name(data[i].name)
+                        f.logo(data[i].logo)
+                        f.division(data[i].division)
                         tmp.push(f)
                     }
                     self.franchises(tmp)
