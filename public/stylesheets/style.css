@@ -91,7 +91,7 @@ p {
   font-family: 'Open Sans';
 }
 @media (max-width: 767px) {
-  #footer {
+  .container {
     margin-left: -20px;
     margin-right: -20px;
     padding-left: 20px;
