@@ -30,10 +30,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
-app.get('/', routes.index);
-app.get('/scores', scores.index);
-app.get('/leagues', leagues.index);
-app.get('/rightarm', rightarm.index);
+app.all('/', routes.index);
+app.all('/scores', scores.index);
+app.all('/leagues', leagues.index);
+app.all('/rightarm', rightarm.index);
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
