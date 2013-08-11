@@ -4,14 +4,46 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/bootstrap.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/font-awesome/css/font-awesome.css')
+    link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Open+Sans', type='text/css')
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(charset='utf-8')
   body
-    section#wrapper!= body
-      #content.container
+    #wrap
+      .navbar.navbar-fixed-top.navbar-inverse
+        .container
+          button(type='button', data-toggle='collapse', data-target='.navbar-responsive-collapse').navbar-toggle
+            i.icon-chevron-down.text-muted
+          a(href='/').navbar-brand Fantasy Football
+          .nav-collapse.collapse.navbar-responsive-collapse
+            ul.nav.navbar-nav
+              li.active
+                a(href='/') Menu
+              li
+                a(href='/schedule') Schedule
+              li
+                a(href='/rightarm') League
+              li
+                a(href='/rightarm/franchises') Franchises
+              li
+                a(href='/scores') Scores
+      section= body
         block content
-      footer 
-        div.well.well-sm
-          block footercrumbs
+      
+        block footercrumbs
+
+    footer#footer
+            .well.follow
+              .col-lg-3.pull-right
+                span.follow-icon
+                  i.icon-tumblr
+                span.follow-icon
+                  i.icon-youtube
+                span.follow-icon
+                  i.icon-twitter
+                span.follow-icon
+                  i.icon-facebook
+          
     script(type='text/javascript', src='/javascripts/jquery.js')
     script(type='text/javascript', src='/javascripts/bootstrap.js')
     script(type='text/javascript', src='/javascripts/knockout.js')
