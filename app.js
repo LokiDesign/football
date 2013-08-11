@@ -7,6 +7,7 @@ var express = require('express'),
  routes = require('./routes'),
  scores = require('./routes/scores'),
  leagues = require('./routes/leagues'),
+ rightarm = require('./routes/rightarm'),
  http = require('http'),
  path = require('path');
 
@@ -31,6 +32,7 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/scores', scores.index);
 app.get('/leagues', leagues.index);
+app.get('/rightarm', rightarm.index);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
