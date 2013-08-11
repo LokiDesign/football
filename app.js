@@ -8,8 +8,8 @@ var express = require('express'),
  scores = require('./routes/scores'),
  leagues = require('./routes/leagues'),
  rightarm = require('./routes/rightarm'),
+ franchises = require('./routes/rightarm/franchises'),
  http = require('http'),
- config = require('./config.js'),
  path = require('path');
 
 var app = express();
@@ -33,6 +33,7 @@ app.all('/', routes.index);
 app.all('/scores', scores.index);
 app.all('/leagues', leagues.index);
 app.all('/rightarm', rightarm.index);
+app.all('/rightarm/franchises', franchises.index);
 app.get('/getLeague/28655', function(req, res){
     var http = require('http');
     var options = {
