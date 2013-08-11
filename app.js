@@ -9,6 +9,7 @@ var express = require('express'),
  leagues = require('./routes/leagues'),
  rightarm = require('./routes/rightarm'),
  http = require('http'),
+ config = require('./config.js'),
  path = require('path');
 
 var app = express();
@@ -24,16 +25,15 @@ app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
-
 app.get('/', routes.index);
 app.get('/scores', scores.index);
 app.get('/leagues', leagues.index);
 app.get('/rightarm', rightarm.index);
-
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
