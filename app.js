@@ -10,15 +10,21 @@ var express = require('express'),
  rightarm = require('./routes/rightarm'),
  franchises = require('./routes/rightarm/franchises'),
  schedule = require('./routes/schedule'),
+ signin = require('./routes/signin'),
  http = require('http'),
  path = require('path');
 
+var flash = require('connect-flash');
 var app = express();
 
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
+app.use(express.cookieParser('keyboard cat'));
+app.use(express.session({ cookie: { maxAge: 60000 }}));
+app.use(flash());
+
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
@@ -36,6 +42,8 @@ app.all('/leagues', leagues.index);
 app.all('/rightarm', rightarm.index);
 app.all('/rightarm/franchises', franchises.index);
 app.all('/schedule', schedule.index);
+app.all('/signin', signin.index);
+app.all('/signin/attempt', signin.controller);
 
 app.get('/getLeague/28655', jsonData({
     host: 'football32.myfantasyleague.com',
