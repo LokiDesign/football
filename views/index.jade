@@ -1,5 +1,7 @@
 extends layout
 
+
+
 block content
     .jumbotron-index.text-center
         .container
@@ -11,5 +13,10 @@ block content
                         .col.col-lg-12.col-sm-12
                             p
                                 a.btn.btn-primary.btn-block.btn-lg.jumbo-btn Find League
-                            p
-                                a(href='/signin').btn.btn-info.btn-block.btn-lg.jumbo-btn Sign in
+                            - var user = isLogged
+                            if !user
+                                p
+                                    a(href='/signin').btn.btn-info.btn-block.btn-lg.jumbo-btn Sign in 
+                            else
+                                p
+                                    a(href='/signout').btn.btn-info.btn-block.btn-lg.jumbo-btn Sign out

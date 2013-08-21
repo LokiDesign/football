@@ -1,3 +1,5 @@
 exports.index = function(req, res){
-  res.render('index', { title: 'Fantasy Football' });
+  var isLogged = req.cookies.USER_ID;
+
+  res.render('index', { title: 'Fantasy Football', isLogged: isLogged });
 };

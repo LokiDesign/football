@@ -11,6 +11,7 @@ var express = require('express'),
  franchises = require('./routes/rightarm/franchises'),
  schedule = require('./routes/schedule'),
  signin = require('./routes/signin'),
+ signout = require('./routes/signout')
  http = require('http'),
  path = require('path');
 
@@ -43,6 +44,7 @@ app.all('/rightarm', rightarm.index);
 app.all('/rightarm/franchises', franchises.index);
 app.all('/schedule', schedule.index);
 app.all('/signin', signin.index);
+app.all('/signout', signout.index);
 app.all('/signin/attempt', signin.controller);
 
 app.get('/getLeague/28655', jsonData({

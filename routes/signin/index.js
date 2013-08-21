@@ -29,6 +29,7 @@ exports.controller = function(req, res){
                 } else {
                     var seshid = result.status.$.session_id;
                     console.log(JSON.stringify(seshid));
+                    res.cookie('USER_ID', seshid, { maxAge: 604800000 })
                     res.redirect('/')
                 }
             });
