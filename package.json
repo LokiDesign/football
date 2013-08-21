@@ -17,6 +17,7 @@
     "express": "3.3.x",
     "jade": "*",
     "connect-flash": "*",
-    "request": "*"
+    "request": "*",
+    "xml2js": "*"
   }
 }
