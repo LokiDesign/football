@@ -6,7 +6,7 @@
     "url" : "https://github.com/LokiDesign/football.git"
   },
   "engines": {
-    "node": "0.10.x",
+    "node": "0.8.3",
     "npm": "1.3.x"
   },
   "private": false,
@@ -14,7 +14,7 @@
     "start": "node app.js"
   },
   "dependencies": {
-    "express": "3.3.x",
+    "express": "3.0.x",
     "jade": "*",
     "connect-flash": "*",
     "request": "*",
