@@ -5,13 +5,13 @@
 
 var express = require('express'),
  routes = require('./routes'),
- scores = require('./routes/scores'),
- leagues = require('./routes/leagues'),
- rightarm = require('./routes/rightarm'),
- franchises = require('./routes/rightarm/franchises'),
- schedule = require('./routes/schedule'),
- signin = require('./routes/signin'),
- signout = require('./routes/signout')
+ // scores = require('./routes/scores'),
+ // leagues = require('./routes/leagues'),
+ // rightarm = require('./routes/rightarm'),
+ // franchises = require('./routes/rightarm/franchises'),
+ // schedule = require('./routes/schedule'),
+ // signin = require('./routes/signin'),
+ // signout = require('./routes/signout')
  http = require('http'),
  path = require('path');
 
@@ -38,29 +38,29 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 app.all('/', routes.index);
-app.all('/scores', scores.index);
-app.all('/leagues', leagues.index);
-app.all('/rightarm', rightarm.index);
-app.all('/rightarm/franchises', franchises.index);
-app.all('/schedule', schedule.index);
-app.all('/signin', signin.index);
-app.all('/signout', signout.index);
-app.all('/signin/attempt', signin.controller);
+// app.all('/scores', scores.index);
+// app.all('/leagues', leagues.index);
+// app.all('/rightarm', rightarm.index);
+// app.all('/rightarm/franchises', franchises.index);
+// app.all('/schedule', schedule.index);
+// app.all('/signin', signin.index);
+// app.all('/signout', signout.index);
+// app.all('/signin/attempt', signin.controller);
 
-app.get('/getLeague/28655', jsonData({
-    host: 'football32.myfantasyleague.com',
-    path: '/2013/export?TYPE=league&L=28655&W=&JSON=1'
-}));
+// app.get('/getLeague/28655', jsonData({
+//     host: 'football32.myfantasyleague.com',
+//     path: '/2013/export?TYPE=league&L=28655&W=&JSON=1'
+// }));
 
-app.get('/getSchedule', jsonData({
-    host: 'football.myfantasyleague.com',
-    path: '/2013/export?TYPE=nflSchedule&W=1&JSON=1'
-}));
+// app.get('/getSchedule', jsonData({
+//     host: 'football.myfantasyleague.com',
+//     path: '/2013/export?TYPE=nflSchedule&W=1&JSON=1'
+// }));
 
-app.get('/getLeagues', jsonData({
-    host: 'football.myfantasyleague.com',
-    path: '/2013/export?TYPE=myleagues&JSON=1'
-}))
+// app.get('/getLeagues', jsonData({
+//     host: 'football.myfantasyleague.com',
+//     path: '/2013/export?TYPE=myleagues&JSON=1'
+// }))
 
 
 http.createServer(app).listen(app.get('port'), function(){
