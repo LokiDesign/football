@@ -21,6 +21,21 @@ block scripts
         var Page = function(){
             var self = this;
             self.players = [{name: "Payton Manning", score: "1000"}, {name: "RG3", score: "800"}, {name: "Russel Wilson", score: "9000"}];
+            $.ajax({
+                url: '/getLeagues',
+                success: function (data) {
+                    var dat = data.league.franchises.franchise;
+                    var tmp = [];
+                    for (var i = 0; i < dat.length; i++){
+                        var f = new franchise()
+                        f.name(dat[i].name)
+                        f.logo(dat[i].logo)
+                        f.division(dat[i].division)
+                        tmp.push(f)
+                    }
+                    self.franchises(tmp)
+                }
+            });
         }
         $(document).ready(function(){
             var model = new Page();

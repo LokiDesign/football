@@ -57,28 +57,55 @@ app.get('/getSchedule', jsonData({
     path: '/2013/export?TYPE=nflSchedule&W=1&JSON=1'
 }));
 
+app.get('/getLeagues', jsonData({
+    host: 'football.myfantasyleague.com',
+    path: '/2013/export?TYPE=myleagues&JSON=1'
+}))
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
 
-function jsonData(options){
+function jsonData(values){
     return function(req, res){
+        
         var http = require('http');
         var dat;
-        http.get(options, function(res) {
-            var data = '';
-            res.on('data', function (chunk){
-                data += chunk;
-            });
-            res.on('end',function(){
-                var obj = JSON.parse(data);
-                dat = obj;
-            })
-        }).on('close', function(){
-            res.send(dat);
-        }).on('error', function(e) {
-            console.log('ERROR: ' + e.message);
-        });
+
+        var options = {
+            qual: 'http://',
+            host: values.host,
+            path: values.path
+        }
+        var request = require('request');
+        var dat;
+        request = request.defaults({jar: true})
+        request.cookie('USER_ID:' + req.cookies.USER_ID)
+        request(options.qual + options.host + options.path, function (error, response, body) {
+            
+            if (!error && response.statusCode == 200) {
+                console.log(req.cookies.USER_ID)
+                
+                var xml = body
+                console.log(body)
+                res.send(JSON.parse(body))
+            }
+        })
     }
+    //     http.get(options, function(res) {
+    //         var data = '';
+    //         res.on('data', function (chunk){
+    //             data += chunk;
+    //         });
+    //         res.on('end',function(){
+    //             var obj = JSON.parse(data);
+    //             dat = obj;
+    //         })
+    //     }).on('close', function(){
+    //         res.send(dat);
+    //     }).on('error', function(e) {
+    //         console.log('ERROR: ' + e.message);
+    //     });
+    // }
 }
