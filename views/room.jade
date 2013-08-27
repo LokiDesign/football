@@ -1,18 +1,18 @@
 extends layout
 
 block content
-    h3.page-title=title
-    <!-- ko foreach: { data: rooms } -->
-    a(href="#").list-group-item
-        .row
-            .col-12
-                h4(data-bind="text: name").list-group-item-heading
-    <!-- /ko -->
+    .jumbotron-index.text-center
+        .container
+            .row
+                .col.col-lg-12.col-sm-12
+
 block footercrumbs
     ul.breadcrumb
         li 
             a(href='/') Menu
-        li.active Rooms
+        li 
+            a(href='/sites') Sites
+        li.active=title
 
 block scripts
     script(type='text/javascript').
@@ -23,12 +23,6 @@ block scripts
         var rooms= !{rooms}
         var Page = function() {
             var self = this;
-            self.rooms = ko.observableArray()
-            var el = [];
-            for(var i = 0; i < rooms.length; i++){
-                el.push(new Room(rooms[i].name))
-            }
-            self.rooms(el)
         }
         $(document).ready(function(){
             var model = new Page();

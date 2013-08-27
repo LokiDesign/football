@@ -48,9 +48,9 @@ app.all('/sites', sites.index);
 app.all('/ch11', ch11.index)
 app.all('/oc2', oc2.index)
 app.all('/ra1', ra1.index)
-app.all('/ch11/*', ch11rooms.index)
-app.all('/oc2/*', oc2rooms.index)
-app.all('/ra1/*', ra1rooms.index)
+app.all('/ch11/:id?', ch11rooms.index)
+app.all('/oc2/:id?', oc2rooms.index)
+app.all('/ra1/:id?', ra1rooms.index)
 // app.all('/scores', scores.index);
 // app.all('/leagues', leagues.index);
 // app.all('/rightarm', rightarm.index);
